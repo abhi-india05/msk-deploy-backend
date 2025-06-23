@@ -16,7 +16,6 @@ const InvoiceController=require('./controllers/Invoicing');
 const AlertController=require('./controllers/Alert');
 const EmailController=require('./controllers/Email');
 const StatController=require('./controllers/Statistics')
-const NotificationController = require('./controllers/Notification');
 
 //other utils
 const connectmongo=require('./config/mongoconnect');
@@ -55,9 +54,7 @@ app.get('/stats/projects-thismonth/:user_id', ProjectController.getThisMonthProj
 app.get('/:user_id/statistics',authenticateJWT,StatController.getStat);
 
 app.get('/:user_id/dashboard', authenticateJWT,TaskController.getTaskByUser);
-app.get('/:user_id/notifications', authenticateJWT, NotificationController.getNotifications);
-app.post('/:user_id/notifications/mark-all-read', authenticateJWT, NotificationController.markAllRead);
-app.delete('/:user_id/notifications/clear', authenticateJWT, NotificationController.clearAll);
+
 // client routes
 app.post('/:user_id/addclient', authenticateJWT, ClientController.addClient);
 app.delete('/:user_id/:client_id/deleteclient', authenticateJWT, ClientController.deleteClient);
